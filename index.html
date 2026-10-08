@@ -1,23 +1,145 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Watercolor Works</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>雲の上の水彩画ギャラリー</title>
+<!-- 貼っていただいたCSSを style.css として保存して読み込みます -->
+<link rel="stylesheet" href="style.css">
+<style>
+  /* 雲の上の雰囲気用の追加スタイル（style.cssの後に読み込まれます） */
+  body {
+    background: linear-gradient(180deg, #bfe0f5 0%, #dff0fa 35%, #fdf6f0 70%, #ffffff 100%);
+    background-attachment: fixed;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    color: #4a5a6a;
+    overflow-x: hidden;
+  }
+
+  /* 空と雲 */
+  .sky {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    filter: blur(28px);
+    opacity: .75;
+    animation: drift 40s ease-in-out infinite alternate;
+  }
+  .c1 { width: 420px; height: 130px; top: 12%; left: -6%; }
+  .c2 { width: 520px; height: 160px; top: 55%; right: -8%; animation-duration: 55s; opacity: .85; }
+  .c3 { width: 320px; height: 100px; top: 30%; right: 18%; animation-duration: 48s; opacity: .55; }
+  .c4 { width: 600px; height: 180px; bottom: -6%; left: 10%; animation-duration: 60s; }
+  @keyframes drift {
+    from { transform: translateX(-40px); }
+    to   { transform: translateX(60px); }
+  }
+
+  /* 水彩のにじみ */
+  .wash {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .35;
+  }
+  .w1 { width: 320px; height: 320px; background: #f6c1d6; top: 8%; right: 12%; }
+  .w2 { width: 280px; height: 280px; background: #c9b8ee; bottom: 12%; left: 8%; }
+
+  .hero { position: relative; z-index: 2; }
+  .hero h1 {
+    letter-spacing: .25em;
+    color: #5d7a96;
+    text-shadow: 0 2px 20px rgba(255,255,255,.9);
+  }
+  .hero p { letter-spacing: .15em; margin: 14px 0 34px; }
+  nav a {
+    color: #5d7a96;
+    padding: 6px 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s;
+  }
+  nav a:hover { border-bottom-color: #5d7a96; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-size: 12px;
+    letter-spacing: .3em;
+    color: #7f9ab3;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, 8px); }
+  }
+
+  /* 作品プレビュー */
+  .preview { position: relative; z-index: 2; padding-bottom: 80px; }
+  .gallery { max-width: 1000px; margin: 0 auto; }
+  .art {
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(120, 160, 200, .25);
+  }
+  .a1 { background: radial-gradient(circle at 30% 30%, #f8d0e0, transparent 55%), radial-gradient(circle at 70% 70%, #bcd9f2, transparent 60%), #eaf4fb; }
+  .a2 { background: radial-gradient(circle at 60% 35%, #cfe9d8, transparent 55%), radial-gradient(circle at 30% 75%, #f6e6b8, transparent 55%), #f3f9f6; }
+  .a3 { background: radial-gradient(circle at 40% 40%, #d6c9f0, transparent 55%), radial-gradient(circle at 75% 65%, #f9cfc4, transparent 55%), #f6f2fb; }
+  .more { text-align: center; margin-top: 30px; }
+  .more a { color: #5d7a96; text-decoration: none; letter-spacing: .2em; border-bottom: 1px solid #9ab5cc; padding-bottom: 4px; }
+
+  footer { text-align: center; padding: 30px 0 40px; font-size: 12px; color: #8fa5b8; letter-spacing: .15em; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cloud, .scroll-hint { animation: none; }
+  }
+</style>
 </head>
 <body>
 
-<header class="hero">
-  <h1>Watercolor Works</h1>
-  <p>水彩作品のギャラリー</p>
+<header class="sky">
+  <div class="wash w1"></div>
+  <div class="wash w2"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="cloud c4"></div>
 
-  <nav>
-    <a href="gallery.html">Gallery</a>
-    <a href="about.html">About</a>
-    <a href="blog.html">Blog</a>
-  </nav>
+  <div class="hero">
+    <h1>雲の上の水彩画</h1>
+    <p>淡い色と光をあつめた小さなギャラリー</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+
+  <div class="scroll-hint">▽ scroll</div>
 </header>
+
+<main class="preview">
+  <h2 class="page-title">最近の作品</h2>
+  <div class="gallery">
+    <!-- 作品画像ができたら <div class="art ..."> を <img src="..." alt="..."> に差し替えてください -->
+    <div class="card"><div class="art a1"></div><p>作品タイトル 1</p></div>
+    <div class="card"><div class="art a2"></div><p>作品タイトル 2</p></div>
+    <div class="card"><div class="art a3"></div><p>作品タイトル 3</p></div>
+  </div>
+  <div class="more"><a href="gallery.html">すべての作品を見る</a></div>
+</main>
+
+<footer>&copy; 雲の上の水彩画</footer>
 
 </body>
 </html>
